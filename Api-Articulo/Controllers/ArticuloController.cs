@@ -13,6 +13,10 @@ namespace Api_Articulo.Controllers
 {
     public class ArticuloController : ApiController
     {
+        /// <summary>
+        /// Obtiene el listado completo de artículos.
+        /// </summary>
+        /// <returns>Enumeración de artículos.</returns>
         // GET: api/Articulo
         public IEnumerable<Articulo> Get()
         {
@@ -22,6 +26,11 @@ namespace Api_Articulo.Controllers
 
         }
 
+        /// <summary>
+        /// Obtiene un artículo por su identificador.
+        /// </summary>
+        /// <param name="id">Id del artículo. Debe ser mayor a 0.</param>
+        /// <returns>El artículo solicitado o un error si no existe.</returns>
         // GET: api/Articulo/N
         public HttpResponseMessage Get(int id)
         {
@@ -46,6 +55,11 @@ namespace Api_Articulo.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, articulo);
         }
 
+        /// <summary>
+        /// Crea un nuevo artículo.
+        /// </summary>
+        /// <param name="articuloDto">Datos del artículo a crear.</param>
+        /// <returns>Mensaje de creación o error de validación.</returns>
         // POST: api/Articulo
         public HttpResponseMessage Post([FromBody] ArticuloDto articuloDto)
         {
@@ -108,6 +122,12 @@ namespace Api_Articulo.Controllers
             }
         }
 
+        /// <summary>
+        /// Agrega imágenes a un artículo existente (sin reemplazar las anteriores).
+        /// </summary>
+        /// <param name="id">Id del artículo destino.</param>
+        /// <param name="imagenesDto">Listado de URLs de imágenes a agregar.</param>
+        /// <returns>Resumen con la cantidad agregada.</returns>
         public HttpResponseMessage Post(int id, [FromBody] ImagenesDto imagenesDto)
         {
             try
@@ -150,6 +170,12 @@ namespace Api_Articulo.Controllers
             }
         }
 
+        /// <summary>
+        /// Actualiza los datos de un artículo existente.
+        /// </summary>
+        /// <param name="id">Id del artículo a modificar.</param>
+        /// <param name="articuloDto">Datos a actualizar.</param>
+        /// <returns>Resultado de la actualización.</returns>
         // PUT: api/Articulo/5
         public HttpResponseMessage Put(int id, [FromBody] ArticuloDto articuloDto)
         {
@@ -211,8 +237,11 @@ namespace Api_Articulo.Controllers
             }
         }
 
-  
-
+        /// <summary>
+        /// Elimina un artículo por Id.
+        /// </summary>
+        /// <param name="id">Id del artículo a eliminar.</param>
+        /// <returns>Mensaje de resultado de la eliminación.</returns>
         // DELETE: api/Articulo/N
         public HttpResponseMessage Delete(int id)
         {
@@ -242,7 +271,5 @@ namespace Api_Articulo.Controllers
 
             return Request.CreateResponse(HttpStatusCode.OK, $"Articulo {id} - '{nombre}' ha sido eliminado con exito de la base de datos.");
         }
-
-        
     }
 }
